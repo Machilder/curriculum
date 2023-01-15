@@ -1,0 +1,75 @@
+.header{
+    width: 400px;
+    height: 100px;
+    background-color: #141f40;
+}
+
+.clearfix::after { 
+    content: ''; 
+    display: block; 
+    clear: both;
+}
+
+/* .main{
+    width: 400px;
+    height: 100px;
+    background-color: blue;
+} */
+.footer{
+    width: 400px;
+    height: 100px;
+    background-color: #d98d30;
+}
+
+.left{
+    width: 150px;
+    height: 250px;
+    background-color: #80bfa8;
+    float:  left;
+}
+.right{
+    width: 250px;
+    height: 250px;
+    background-color: #8c2727;
+    float:  left;
+}
+
+
+/*ウィンドウ幅が最大767pxまでの場合に適用(タブレット用)*/
+@media screen and (max-width: 767px) {
+
+    .header {
+        width: 250px;
+    }
+
+    .right {
+        width: 100px;
+    }
+
+    .footer {
+        width: 250px;
+    }
+
+}
+
+
+@media screen and (max-width: 479px) {
+
+    .header {
+        width: 150px;
+    }
+
+    .right {
+        width: 150px;
+        float:  none;
+    }
+
+    .left{
+        float:  none;
+    }
+
+    .footer {
+        width: 150px;
+    }
+
+}
