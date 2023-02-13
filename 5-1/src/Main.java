@@ -69,7 +69,6 @@ public class Main {
             System.out.println(DateList.get(i));
         }
         
-        
     }
 
 }
