@@ -46,7 +46,6 @@ public class EmployeeController extends HttpServlet {
              ServletContext context = this.getServletContext();
              RequestDispatcher dispatcher = context.getRequestDispatcher("/index.jsp");
              dispatcher.forward(request, response);
-             System.out.println("last");
          }
      }
 }
