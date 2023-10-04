@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.sss.sys.entity.Employee;
 import jp.co.sss.sys.form.LoginForm;
-import jp.co.sss.sys.repository.EmployeeRepository;
+import jp.co.sss.sys.repository.EmployeeService;
 
 /**
  * コントローラークラス
@@ -24,7 +24,7 @@ import jp.co.sss.sys.repository.EmployeeRepository;
 public class IndexController {
 
     @Autowired
-    EmployeeRepository empRepository;
+    EmployeeService empRepository;
 
     // ログイン情報を一時的に格納するための変数
     private String empId;
