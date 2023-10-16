@@ -7,12 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.sss.sys.entity.Employee;
 import jp.co.sss.sys.form.LoginForm;
-import jp.co.sss.sys.repository.EmployeeService;
+import jp.co.sss.sys.repository.EmployeeRepository;
 
 /**
  * コントローラークラス
@@ -24,18 +25,15 @@ import jp.co.sss.sys.repository.EmployeeService;
 public class IndexController {
 
     @Autowired
-    EmployeeService empRepository;
-
-    // ログイン情報を一時的に格納するための変数
-    private String empId;
-    private String password;
+    EmployeeRepository employeeRepository;
 
     /**
      * ログイン画面を表示するメソッド
      * @param loginForm ログインフォームのデータを受け取ります
      * @return login.html ログイン画面のテンプレートを返します
      */
-    @RequestMapping(path = "/login", method = RequestMethod.GET)
+    //@RequestMapping(path = "/login", method = RequestMethod.GET)
+    @GetMapping(path = "/login")
     public String login(LoginForm loginForm) {
         return "login";
     }
@@ -47,34 +45,27 @@ public class IndexController {
      * @param response HTTPレスポンス情報を受け取ります
      * @return top.html トップ画面のテンプレートを返します
      */
-    @RequestMapping(path = "/top", method = RequestMethod.POST)
+    //@RequestMapping(path = "/top", method = RequestMethod.POST)
+    @PostMapping(path = "/top")
     public String login(LoginForm loginForm, HttpServletRequest request, HttpServletResponse response) {
-        // ログインフォームのデータをリクエスト属性に設定
-        request.setAttribute("loginForm", loginForm);
 
         try {
-            // リクエストからログイン情報を取得
-            this.empId = loginForm.getEmpId();
-            this.password = loginForm.getPassword();
 
             // データベースから従業員情報を取得
-            Employee emp = empRepository.findByempId(empId);
+            Employee emp = employeeRepository.findByempIdAndPassword(loginForm.getEmpId(),loginForm.getPassword());
+ 
+            // ログイン成功後、LoginFormに従業員名を設定
+            loginForm.setEmpName(emp.getEmpName());
 
-            // パスワードが一致するか確認
-            if (emp != null && password.equals(emp.getPassword())) {
-                
-                // ログイン成功後、LoginFormに従業員名を設定
-                loginForm.setEmpName(emp.getEmpName());
+            // 従業員一覧を取得
+            List<Employee> emplist = employeeRepository.findAll();
 
-                // 従業員一覧を取得
-                List<Employee> emplist = empRepository.findAll();
+            // ログイン情報と従業員一覧をリクエスト属性に設定
+            request.setAttribute("emplist", emplist);
 
-                // ログイン情報と従業員一覧をリクエスト属性に設定
-                request.setAttribute("emplist", emplist);
-            } else {
-                // パスワードが一致しない場合はログイン画面に戻る
-                return "login";
-            }
+            // ユーザ名をリクエスト属性に設定
+            request.setAttribute("loginForm", loginForm);
+
 
             // ログイン成功時にトップ画面に遷移
             return "top";
@@ -84,4 +75,14 @@ public class IndexController {
             return "login";
         }
     }
+    
+    @GetMapping("/mypage")
+    public String mypage() {
+        return "mypage";
+    }
+    
+    @GetMapping("/mypage/update")
+    public String mypageUpdate() {
+        return "mypageUpdate";
+    }    
 }

@@ -40,7 +40,7 @@ public class LoginForm {
         return password;
     }
 
-    public void setPassword(String EmpName) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

@@ -18,6 +18,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
      * @return -
      */
     public Employee findByempId(String empId);
+    public Employee findByempIdAndPassword(String empId,String password);
+
     
     public List<Employee> findAll();
 

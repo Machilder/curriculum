@@ -4,20 +4,17 @@
 <meta charset="UTF-8" />
 <link th:href="@{/css/style.css}" rel="stylesheet" />
 <link th:href="@{/css/layout.css}" rel="stylesheet" />
-<title>社員一覧画面</title>
+<title>マイページ変更完了</title>
 </head>
 <body>
 	<!-- ヘッダー -->
 	<header th:include="layout/header :: head"></header>
-	<!-- サイドバー -->
-	<aside th:include="layout/aside :: side"></aside>
-	<!-- メイン -->
-	<article class="main">
-		<h3 class="page_title">社員一覧画面</h3>
-		<th:block th:text="${inputData.empId}"></th:block>
-	</article>
+	<div class="content">
+		<h3>マイページ変更完了</h3>
+		<p>会員情報の変更が完了しました。</p>
+		<a th:href="@{/mypage}">戻る</a>
+	</div>
 	<!-- フッダー -->
 	<footer th:include="layout/footer :: foot"></footer>
-
 </body>
 </html>
