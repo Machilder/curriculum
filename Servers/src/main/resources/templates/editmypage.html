@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<link th:href="@{/css/layout.css}" rel="stylesheet" />
+<title>マイページ変更完了</title>
+</head>
+<body>
+	<!-- ヘッダー -->
+	<header th:include="layout/header :: head"></header>
+	<div class="content">
+		<h3>マイページ変更完了</h3>
+		<p>会員情報の変更が完了しました。</p>
+		<a th:href="@{/mypage}">戻る</a>
+	</div>
+	<!-- フッダー -->
+	<footer th:include="layout/footer :: foot"></footer>
+</body>
+</html>

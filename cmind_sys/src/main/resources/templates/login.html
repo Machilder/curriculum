@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8" />
-<link th:href="@{/css/style.css}" rel="stylesheet" />
-<link th:href="@{/css/layout.css}" rel="stylesheet" />
-<title>Insert title here</title>
+	<meta charset="UTF-8" />
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+	<link th:href="@{/css/layout.css}" rel="stylesheet" />
+	<title>Insert title here</title>
 </head>
+
 <body>
 	<!-- ヘッダー -->
 	<header th:include="layout/header :: head"></header>
@@ -14,8 +16,11 @@
 			<h3>ログイン画面</h3>
 			<div class="form">
 
-				<form th:action="@{/top}" method="post" th:object="${loginForm}">
+				<form th:action="@{/login}" method="post" th:object="${loginForm}">
 
+					<div th:if="${#fields.hasErrors('empId')}" th:errors="*{empId}"></div>
+					<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+					<div th:if="${not #strings.isEmpty(loginError)}" th:text="${loginError}"></div>
 					<div class="login_label">社員番号</div>
 					<div class="login_input">
 						<input type="text" th:field="*{empId}" />
@@ -37,4 +42,5 @@
 	<!-- フッダー -->
 	<footer th:include="layout/footer :: foot"></footer>
 </body>
+
 </html>

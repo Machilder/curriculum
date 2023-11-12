@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<header class="content" th:fragment="head">
+		<div class="title">社員管理システム</div>
+		<!-- ユーザー名の表示 -->
+<!--		<div class="user_info"></div>-->
+		<div class="user_info" th:if="${loginForm}">
+		    ログインユーザ: <span th:text="${loginForm.EmpName}"></span>
+		</div>	
+	</header>
+</body>
+</html>
